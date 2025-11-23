@@ -15,7 +15,7 @@ down_migration:
 
 migrate: run_migrations generate_storage
 
-down: down_migration generate_storage
+downgrade: down_migration generate_storage
 
 generate_storage:
 	sqlc generate
