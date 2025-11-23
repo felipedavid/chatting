@@ -7,6 +7,7 @@ import (
 
 	"github.com/felipedavid/chatting/storage"
 	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 func run() error {
@@ -21,10 +22,9 @@ func run() error {
 	queries := storage.New(conn)
 
 	user, err := queries.CreateUser(ctx, storage.CreateUserParams{
-		Username: "Felipe David",
-		Email:    "felipedavid.huh@gmail.com",
-		Password: "12301",
-		Bio:      "Hello there!!!",
+		PhoneNumber: "+1234567890",
+		DisplayName: pgtype.Text{String: "Felipe David", Valid: true},
+		About:       pgtype.Text{String: "Hello there!!!", Valid: true},
 	})
 	if err != nil {
 		return err
